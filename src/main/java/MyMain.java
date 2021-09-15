@@ -8,8 +8,19 @@ public class MyMain {
     // Ex. binaryToDecimal("1010") => 10 (ten)
     //     binaryToDecimal("110010") => 50
     public static int binaryToDecimal(String binary) {
-        // REPLACE WITH YOUR CODE
-        return -1;
+        int intbinary = Integer.parseInt(binary);
+        int total = 0;
+        double multiplier = 1.0;
+        int last = intbinary % 10;
+
+        while (intbinary > 0){
+            total += (last*multiplier);
+            intbinary /= 10;
+            multiplier = multiplier * 2;
+            last = intbinary % 10;
+        }
+
+        return total;
     }
 
     // Given a decimal number (e.g. 152) as input, and returns a String
@@ -17,13 +28,31 @@ public class MyMain {
     // Ex. decimalToBinary(7) => "111"
     //     decimalToBinary(152) => "10011000"
     public static String decimalToBinary(int decimal) {
-        // REPLACE WITH YOUR CODE
-        return "";
-    }
+        StringBuilder total = new StringBuilder();
+        if (decimal == 0){
+            return "0";
+        }
+       while(decimal > 0){
+            total.append(decimal % 2);
+            decimal /= 2;
+        }
+        return String.valueOf(total.reverse());
+   }
     
     
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        // YOUR CODE HERE
+
+        System.out.println("give me a number in binary");
+        String binary = scan.nextLine();
+        binaryToDecimal((String)binary);
+        System.out.println(binaryToDecimal((String)binary));
+
+
+        System.out.println("give me a digit");
+        int decimal = scan.nextInt();
+        decimalToBinary((int) decimal);
+        System.out.println(decimalToBinary((int) decimal));
+
     }
 }
